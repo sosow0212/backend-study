@@ -18,15 +18,12 @@ class PostJpaEntity(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long = 0L,
+    var id: Long = DEFAULT_ID,
 ) {
 
-    fun update(title: String, content: String) {
-        this.title = title
-        this.content = content
-    }
-
     companion object {
+        private const val DEFAULT_ID = 0L
+
         fun of(title: String, content: String) = PostJpaEntity(title, content)
     }
 }

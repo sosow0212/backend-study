@@ -25,8 +25,8 @@ class PostRepositoryAdapter(
         return Post.of(savedPost.title, savedPost.content, savedPost.id)
     }
 
-    override fun update(id: Long, newPost: Post): Post {
-        return postJpaRepository.findById(id)
+    override fun update(newPost: Post): Post {
+        return postJpaRepository.findById(newPost.id!!)
             .orElseThrow { PostException(POST_NOT_FOUND_EXCEPTION) }
             .apply {
                 this.title = newPost.title.value

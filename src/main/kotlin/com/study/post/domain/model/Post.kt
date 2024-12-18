@@ -5,7 +5,7 @@ import com.study.post.domain.model.vo.Title
 class Post private constructor(
     var title: Title,
     var content: String,
-    var id: Long? = 0L
+    var id: Long? = DEFAULT_ID
 ) {
 
     fun update(newPost: Post) {
@@ -14,6 +14,8 @@ class Post private constructor(
     }
 
     companion object {
-        fun of(title: String, content: String, id: Long? = 0L): Post = Post(Title.from(title), content, id)
+        private const val DEFAULT_ID = 0L
+
+        fun of(title: String, content: String, id: Long? = DEFAULT_ID): Post = Post(Title.from(title), content, id)
     }
 }

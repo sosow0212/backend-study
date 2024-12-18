@@ -8,5 +8,5 @@ interface PostRepositoryPort {
 
     fun save(post: Post): Post
 
-    fun update(id: Long, newPost: Post): Post
+    fun update(newPost: Post): Post
 }
