@@ -1,17 +1,17 @@
 package com.study.global
 
+import com.fasterxml.jackson.module.kotlin.MissingKotlinParameterException
 import jakarta.servlet.http.HttpServletRequest
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 
 @RestControllerAdvice
-class GlobalExceptionAdvice() {
-
-    private val log = LoggerFactory.getLogger(GlobalExceptionAdvice::class.java)
+class GlobalExceptionAdvice {
 
     @ExceptionHandler(Exception::class)
     fun handleException(request: HttpServletRequest, exception: Exception): ResponseEntity<ExceptionResponse> {
@@ -23,7 +23,13 @@ class GlobalExceptionAdvice() {
         )
 
         return ResponseEntity.internalServerError()
-            .body(ExceptionResponse("INTERNAL_EXCEPTION", HttpStatus.INTERNAL_SERVER_ERROR, "알 수 없는 오류가 발생했습니다."))
+            .body(
+                ExceptionResponse(
+                    "INTERNAL_EXCEPTION",
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    exception.message ?: "알 수 없는 오류가 발생했습니다."
+                )
+            )
     }
 
     @ExceptionHandler(MethodArgumentNotValidException::class)
@@ -37,6 +43,20 @@ class GlobalExceptionAdvice() {
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
             .body(ExceptionResponse("PARAM_ERROR", HttpStatus.BAD_REQUEST, errorMessage))
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException::class)
+    fun handleDtoValueEmpty(exception: HttpMessageNotReadableException): ResponseEntity<ExceptionResponse> {
+        val message = when (val causeException = exception.cause) {
+            is MissingKotlinParameterException -> {
+                "요청 필드 값으로 null 값이 오면 안됩니다. 필드명: ${causeException.parameter.name}"
+            }
+
+            else -> "요청을 역직렬화 하는과정에서 예외가 발생했습니다."
+        }
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+            .body(ExceptionResponse("FIELD_EMPTY_ERROR", HttpStatus.BAD_REQUEST, message))
     }
 
     @ExceptionHandler(CustomException::class)
@@ -54,5 +74,9 @@ class GlobalExceptionAdvice() {
         return ResponseEntity.status(type.httpStatusCode)
             .body(ExceptionResponse(type.subject, type.httpStatusCode, type.message))
 
+    }
+
+    companion object {
+        private val log = LoggerFactory.getLogger(this::class.java)
     }
 }
