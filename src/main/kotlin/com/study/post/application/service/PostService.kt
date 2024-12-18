@@ -29,11 +29,6 @@ class PostService(
         id: Long,
         postUpdateCommand: PostUpdateCommand
     ): PostResponse {
-        /**
-         *  TODO : 더티체킹 안됨 -> 도메인을 변환해서 적용하니 당연함.. Entity까지 닿지 않음 어떻게 해야 더 좋은 구조일지?
-         *  쿼리를 두 번 날려야하나? repo에서 하기에는 비즈니스 로직(orElse..)의 책임을 따져보자
-         */
-
         val post = findPostById(id)
         val newPost = PostMapper.commandToPost(postUpdateCommand)
         post.update(newPost)
@@ -41,9 +36,8 @@ class PostService(
     }
 
     private fun findPostById(id: Long): Post {
-        val post = postRepositoryPort.findById(id)
+        return postRepositoryPort.findById(id)
             ?: throw PostException(POST_NOT_FOUND_EXCEPTION)
-        return post
     }
 
     @Transactional(readOnly = true)

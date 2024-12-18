@@ -21,6 +21,11 @@ class PostJpaEntity(
     var id: Long = 0L,
 ) {
 
+    fun update(title: String, content: String) {
+        this.title = title
+        this.content = content
+    }
+
     companion object {
         fun of(title: String, content: String) = PostJpaEntity(title, content)
     }

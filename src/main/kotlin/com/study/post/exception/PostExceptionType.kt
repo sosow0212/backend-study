@@ -11,4 +11,16 @@ enum class PostExceptionType : CustomExceptionType {
         override val message: String = "게시글을 찾을 수 없습니다."
         override val httpStatusCode: HttpStatusCode = HttpStatus.NOT_FOUND
     },
+
+    POST_TITLE_NOT_BLANK_EXCEPTION {
+        override val subject: String = "POST_EXCEPTION"
+        override val message: String = "게시글의 제목을 입력해주세요."
+        override val httpStatusCode: HttpStatusCode = HttpStatus.BAD_REQUEST
+    },
+
+    POST_CONTENT_NOT_BLANK_EXCEPTION {
+        override val subject: String = "POST_EXCEPTION"
+        override val message: String = "게시글의 내용을 입력해주세요."
+        override val httpStatusCode: HttpStatusCode = HttpStatus.BAD_REQUEST
+    },
 }

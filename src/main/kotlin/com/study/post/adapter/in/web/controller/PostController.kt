@@ -2,10 +2,9 @@ package com.study.post.adapter.`in`.web.controller
 
 import com.study.post.adapter.`in`.web.controller.request.PostCreateRequest
 import com.study.post.adapter.`in`.web.controller.request.PostUpdateRequest
-import com.study.post.application.command.PostCreateCommand
-import com.study.post.application.command.PostUpdateCommand
 import com.study.post.application.port.`in`.PostUseCase
 import com.study.post.application.port.out.response.PostResponse
+import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
@@ -29,9 +28,8 @@ class PostController(
     }
 
     @PostMapping
-    fun save(@RequestBody postCreateRequest: PostCreateRequest): ResponseEntity<PostResponse> {
-        val postCreateCommand = PostCreateCommand(postCreateRequest.title, postCreateRequest.content)
-        val postResponse = postUseCase.create(postCreateCommand)
+    fun save(@RequestBody @Valid postCreateRequest: PostCreateRequest): ResponseEntity<PostResponse> {
+        val postResponse = postUseCase.create(postCreateRequest.toCommand())
         return ResponseEntity.created(URI.create("/post/${postResponse.id}"))
             .body(postResponse)
     }
@@ -39,10 +37,9 @@ class PostController(
     @PatchMapping("/{id}")
     fun patchPost(
         @PathVariable id: Long,
-        @RequestBody postUpdateRequest: PostUpdateRequest
+        @RequestBody @Valid postUpdateRequest: PostUpdateRequest
     ): ResponseEntity<PostResponse> {
-        val updatePostCommand = PostUpdateCommand(postUpdateRequest.title, postUpdateRequest.content)
-        val updatedPostPost = postUseCase.update(id, updatePostCommand)
+        val updatedPostPost = postUseCase.update(id, postUpdateRequest.toCommand())
         return ResponseEntity.ok(updatedPostPost)
     }
 }

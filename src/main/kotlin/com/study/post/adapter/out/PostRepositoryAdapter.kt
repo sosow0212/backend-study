@@ -4,6 +4,8 @@ import com.study.post.adapter.out.persistence.entity.PostJpaEntity
 import com.study.post.adapter.out.persistence.repository.PostJpaRepository
 import com.study.post.application.port.out.PostRepositoryPort
 import com.study.post.domain.model.Post
+import com.study.post.exception.PostException
+import com.study.post.exception.PostExceptionType.POST_NOT_FOUND_EXCEPTION
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -21,5 +23,15 @@ class PostRepositoryAdapter(
         val entity = PostJpaEntity.of(post.title, post.content)
         val savedPost = postJpaRepository.save(entity)
         return Post(savedPost.title, savedPost.content, savedPost.id)
+    }
+
+    override fun update(id: Long, newPost: Post): Post {
+        return postJpaRepository.findById(id)
+            .orElseThrow { PostException(POST_NOT_FOUND_EXCEPTION) }
+            .apply {
+                this.title = newPost.title
+                this.content = newPost.content
+            }
+            .let { updatedEntity -> Post(updatedEntity.title, updatedEntity.content, updatedEntity.id) }
     }
 }
