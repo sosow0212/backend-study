@@ -30,8 +30,8 @@ class PostService(
         postUpdateCommand: PostUpdateCommand
     ): PostResponse {
         val post = findPostById(id)
-        val newPost = PostMapper.commandToPost(postUpdateCommand)
-        post.update(newPost)
+        post.update(PostMapper.commandToPost(postUpdateCommand))
+        postRepositoryPort.update(id, post)
         return PostMapper.domainToResponse(post)
     }
 

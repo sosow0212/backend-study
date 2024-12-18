@@ -12,7 +12,7 @@ data class PostResponse(
 
         fun from(post: Post) = PostResponse(
             id = post.id,
-            title = post.title,
+            title = post.title.value,
             content = post.content
         )
     }

@@ -15,23 +15,23 @@ class PostRepositoryAdapter(
 
     override fun findById(id: Long): Post? {
         return postJpaRepository.findById(id)
-            .map { entity -> Post(entity.title, entity.content, entity.id) }
+            .map { entity -> Post.of(entity.title, entity.content, entity.id) }
             .orElse(null)
     }
 
     override fun save(post: Post): Post {
-        val entity = PostJpaEntity.of(post.title, post.content)
+        val entity = PostJpaEntity.of(post.title.value, post.content)
         val savedPost = postJpaRepository.save(entity)
-        return Post(savedPost.title, savedPost.content, savedPost.id)
+        return Post.of(savedPost.title, savedPost.content, savedPost.id)
     }
 
     override fun update(id: Long, newPost: Post): Post {
         return postJpaRepository.findById(id)
             .orElseThrow { PostException(POST_NOT_FOUND_EXCEPTION) }
             .apply {
-                this.title = newPost.title
+                this.title = newPost.title.value
                 this.content = newPost.content
             }
-            .let { updatedEntity -> Post(updatedEntity.title, updatedEntity.content, updatedEntity.id) }
+            .let { updatedEntity -> Post.of(updatedEntity.title, updatedEntity.content, updatedEntity.id) }
     }
 }

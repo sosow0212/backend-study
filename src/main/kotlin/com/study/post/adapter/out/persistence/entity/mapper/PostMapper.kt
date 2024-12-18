@@ -11,9 +11,9 @@ data class PostMapper(
     val id: Long,
 ) {
     companion object {
-        fun commandToPost(command: PostCreateCommand): Post = Post(command.title, command.content)
+        fun commandToPost(command: PostCreateCommand): Post = Post.of(command.title, command.content)
 
-        fun commandToPost(command: PostUpdateCommand): Post = Post(command.title, command.content)
+        fun commandToPost(command: PostUpdateCommand): Post = Post.of(command.title, command.content)
 
         fun domainToResponse(post: Post): PostResponse = PostResponse.from(post)
     }

@@ -23,7 +23,13 @@ class GlobalExceptionAdvice {
         )
 
         return ResponseEntity.internalServerError()
-            .body(ExceptionResponse("INTERNAL_EXCEPTION", HttpStatus.INTERNAL_SERVER_ERROR, "알 수 없는 오류가 발생했습니다."))
+            .body(
+                ExceptionResponse(
+                    "INTERNAL_EXCEPTION",
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    exception.message ?: "알 수 없는 오류가 발생했습니다."
+                )
+            )
     }
 
     @ExceptionHandler(MethodArgumentNotValidException::class)
