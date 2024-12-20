@@ -9,7 +9,6 @@ class CarsTest : BehaviorSpec({
     val fuelPositiveGenerator = FakeFuelPositiveGenerator()
 
     given("getWinner : 우승자를 구할 때") {
-
         `when`("우승자가 여러 명일 때") {
             val cars = Cars.from(listOf("jetty", "millo"))
             cars.startRace(fuelPositiveGenerator)

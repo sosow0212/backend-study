@@ -16,7 +16,6 @@ class RacingGameServiceTest : BehaviorSpec({
     lateinit var fuelGenerator: FakeFuelPositiveGenerator
 
     beforeEach {
-        // 테스트 실행 전 객체 초기화
         carRepository = FakeCarRepository()
         fuelGenerator = FakeFuelPositiveGenerator()
         racingGameService = RacingGameService(
