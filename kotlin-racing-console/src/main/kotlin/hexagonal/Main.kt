@@ -1,15 +1,20 @@
 package com.hexagonal
 
-import com.hexagonal.controller.RacingController
-import com.hexagonal.model.RandomFuelGenerator
-import com.hexagonal.view.console.ConsoleInputView
-import com.hexagonal.view.console.ConsoleOutputView
+import hexagonal.adapter.out.view.ConsoleInputViewAdapter
+import hexagonal.adapter.out.view.ConsoleOutputViewAdapter
+import hexagonal.adapter.`in`.console.RacingController
+import hexagonal.adapter.out.repository.CarRepositoryConsoleAdapter
+import hexagonal.adapter.out.domainservice.RandomFuelGeneratorAdapter
+import hexagonal.application.service.RacingGameService
 
 fun main() {
 
     RacingController(
-        ConsoleInputView(),
-        ConsoleOutputView(),
-        RandomFuelGenerator()
+        ConsoleInputViewAdapter(),
+        ConsoleOutputViewAdapter(),
+        RacingGameService(
+            carRepository = CarRepositoryConsoleAdapter(),
+            fuelGenerator = RandomFuelGeneratorAdapter()
+        )
     ).run()
 }
