@@ -21,6 +21,7 @@
 ---
 
 ### Spring(Kotlin) + Hexagonal architecture
+- 24.12.20 (basic -> 추후 다시 보기 현재는 코틀린이 너무 미흡)
 - [ ] Kotlin + Spring FW 헥사고날 아키텍처 맛보기
   - branch : hexagonal-architecture 
   - 관련 서적 : 헥사고날 아키텍처 설계와 구현
