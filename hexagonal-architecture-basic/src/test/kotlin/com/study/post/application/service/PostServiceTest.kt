@@ -1,7 +1,7 @@
 package com.study.post.application.service
 
-import com.study.post.application.command.PostCreateCommand
-import com.study.post.application.command.PostUpdateCommand
+import com.study.post.application.port.`in`.command.PostCreateCommand
+import com.study.post.application.port.`in`.command.PostUpdateCommand
 import com.study.post.application.port.out.FakePostRepository
 import com.study.post.domain.model.Post
 import com.study.post.exception.PostException

@@ -1,7 +1,7 @@
 package com.study.post.application.port.`in`
 
-import com.study.post.application.command.PostCreateCommand
-import com.study.post.application.command.PostUpdateCommand
+import com.study.post.application.port.`in`.command.PostCreateCommand
+import com.study.post.application.port.`in`.command.PostUpdateCommand
 import com.study.post.application.port.out.response.PostResponse
 
 interface PostUseCase {

@@ -1,6 +1,6 @@
 package com.study.post.adapter.`in`.web.controller.request
 
-import com.study.post.application.command.PostCreateCommand
+import com.study.post.application.port.`in`.command.PostCreateCommand
 import jakarta.validation.constraints.NotBlank
 
 data class PostCreateRequest(

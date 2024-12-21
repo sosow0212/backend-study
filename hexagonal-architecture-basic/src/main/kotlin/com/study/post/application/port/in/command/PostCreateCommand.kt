@@ -1,4 +1,4 @@
-package com.study.post.application.command
+package com.study.post.application.port.`in`.command
 
 data class PostCreateCommand(
     var title: String,
