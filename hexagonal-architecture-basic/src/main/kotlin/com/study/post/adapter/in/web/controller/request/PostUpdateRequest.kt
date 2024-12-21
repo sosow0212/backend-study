@@ -1,6 +1,6 @@
 package com.study.post.adapter.`in`.web.controller.request
 
-import com.study.post.application.command.PostUpdateCommand
+import com.study.post.application.port.`in`.command.PostUpdateCommand
 import jakarta.validation.constraints.NotBlank
 
 data class PostUpdateRequest(

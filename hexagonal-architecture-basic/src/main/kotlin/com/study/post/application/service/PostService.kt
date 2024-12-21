@@ -1,8 +1,8 @@
 package com.study.post.application.service
 
 import com.study.post.adapter.out.persistence.entity.mapper.PostMapper
-import com.study.post.application.command.PostCreateCommand
-import com.study.post.application.command.PostUpdateCommand
+import com.study.post.application.port.`in`.command.PostCreateCommand
+import com.study.post.application.port.`in`.command.PostUpdateCommand
 import com.study.post.application.port.`in`.PostUseCase
 import com.study.post.application.port.out.PostRepositoryPort
 import com.study.post.application.port.out.response.PostResponse
