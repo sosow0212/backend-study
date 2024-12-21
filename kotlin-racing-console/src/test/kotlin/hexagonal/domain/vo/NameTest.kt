@@ -8,20 +8,20 @@ import io.kotest.matchers.shouldBe
 
 class NameTest : BehaviorSpec({
 
-    given("constructor: 이름을 생성할 때") {
+    Given("constructor: 이름을 생성할 때") {
         val successCaseName = "jetty"
         val failCaseName = "a"
 
-        `when`("길이가 3이상이면") {
+        When("길이가 3이상이면") {
             val name = Name(successCaseName)
 
-            then("정상 생성된다") {
+            Then("정상 생성된다") {
                 name.value shouldBe successCaseName
             }
         }
 
-        `when`("길이가 3미만이면") {
-            then("예외를 발생한다") {
+        When("길이가 3미만이면") {
+            Then("예외를 발생한다") {
                 shouldThrow<NameLengthInvalidException> {
                     Name(failCaseName)
                 }
