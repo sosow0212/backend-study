@@ -1,6 +1,6 @@
 package hexagonal.application.service
 
-import hexagonal.application.command.RacingGameSaveCommand
+import hexagonal.application.port.`in`.command.RacingGameSaveCommand
 import hexagonal.application.port.`in`.RacingGameUseCase
 import hexagonal.application.port.out.dto.CarOutboundResponse
 import hexagonal.application.port.out.repository.CarRepository

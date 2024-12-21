@@ -1,6 +1,6 @@
 package hexagonal.application.port.`in`
 
-import hexagonal.application.command.RacingGameSaveCommand
+import hexagonal.application.port.`in`.command.RacingGameSaveCommand
 import hexagonal.application.port.out.dto.CarOutboundResponse
 import hexagonal.domain.RacingGame
 

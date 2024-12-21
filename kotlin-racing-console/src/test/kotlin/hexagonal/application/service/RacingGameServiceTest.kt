@@ -24,17 +24,17 @@ class RacingGameServiceTest : BehaviorSpec({
         )
     }
 
-    given("start: 게임을 실행할 때") {
-        `when`("게임을 찾을 수 없다면") {
-            then("예외가 발생한다") {
+    Given("start: 게임을 실행할 때") {
+        When("게임을 찾을 수 없다면") {
+            Then("예외가 발생한다") {
                 shouldThrow<RacingGameNotFoundException> { racingGameService.start() }
             }
         }
 
-        `when`("게임을 찾을 수 있다면") {
+        When("게임을 찾을 수 있다면") {
             val tryCount = 10
 
-            then("진행 시킨다") {
+            Then("진행 시킨다") {
                 // 테스트 실행 전에 save 호출
                 carRepository.save(RacingGame.of(listOf("aaaa", "bbbb"), tryCount))
 
@@ -43,15 +43,15 @@ class RacingGameServiceTest : BehaviorSpec({
         }
     }
 
-    given("findWinners: 우승자를 찾을 때") {
-        `when`("게임을 찾을 수 없다면") {
-            then("예외가 발생한다") {
+    Given("findWinners: 우승자를 찾을 때") {
+        When("게임을 찾을 수 없다면") {
+            Then("예외가 발생한다") {
                 shouldThrow<RacingGameNotFoundException> { racingGameService.findWinners() }
             }
         }
 
-        `when`("이동을 한다면") {
-            then("우승자가 나온다") {
+        When("이동을 한다면") {
+            Then("우승자가 나온다") {
                 carRepository.save(RacingGame.of(listOf("jetty"), 1))
                 racingGameService.start()
 

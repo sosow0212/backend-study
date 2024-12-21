@@ -1,7 +1,7 @@
 package hexagonal.adapter.`in`.console
 
 import hexagonal.adapter.`in`.console.view.InputView
-import hexagonal.application.command.RacingGameSaveCommand
+import hexagonal.application.port.`in`.command.RacingGameSaveCommand
 import hexagonal.application.port.`in`.RacingGameUseCase
 import hexagonal.application.port.out.view.OutputView
 

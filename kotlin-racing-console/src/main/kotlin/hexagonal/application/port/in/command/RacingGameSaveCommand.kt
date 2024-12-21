@@ -1,4 +1,4 @@
-package hexagonal.application.command
+package hexagonal.application.port.`in`.command
 
 data class RacingGameSaveCommand(
     val names: List<String>,
