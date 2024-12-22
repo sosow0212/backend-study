@@ -22,3 +22,7 @@ spring:
 
 swagger:
   url: http://localhost:8080
+
+jwt:
+  secret: jwtscretjwtscretjwtscretjwtscretjwtscretjwtscretjwtscretjwtscretjwtscretjwtscretjwtscretjwtscretjwtscret
+  expiration-period: 10000
