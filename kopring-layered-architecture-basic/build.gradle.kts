@@ -39,6 +39,13 @@ dependencies {
     testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
     testImplementation("io.kotest:kotest-property:$kotestVersion")
 
+    // mockk
+    testImplementation("io.mockk:mockk:1.13.11")
+    testImplementation("com.ninja-squad:springmockk:4.0.2")
+
+    // RestAssured
+    testImplementation("io.rest-assured:rest-assured:5.5.0")
+
     // Swagger
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
 
