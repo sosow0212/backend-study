@@ -1,4 +1,4 @@
-package com.ai
+package exam.ai
 
 interface ChatbotRequester {
 

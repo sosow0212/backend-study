@@ -1,8 +1,8 @@
-package com
+package com.exam
 
-import com.ai.ChatGptRequester
-import com.ai.ClaudeRequester
-import com.ai.DeepSeekRequester
+import exam.ai.ChatGptRequester
+import exam.ai.ClaudeRequester
+import exam.ai.DeepSeekRequester
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
