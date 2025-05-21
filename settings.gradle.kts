@@ -4,3 +4,4 @@ plugins {
 rootProject.name = "study"
 include("hexagonal-architecture-basic")
 include("kotlin-exam")
+include("kafka-study")
